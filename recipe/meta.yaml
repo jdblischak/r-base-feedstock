@@ -27,6 +27,7 @@ source:
     - 0015-link-Xt-to-uuid.patch
     - 0016-Mimic-OpenBLAS-when-making-reference-Rblas-and-Rlapa.patch
     - 0017-Foribly-remove-then-forcibly-mv-in-javareconf.in.patch
+    - 0018-Disable-default-user-libraries.patch
 
 build:
   merge_build_host: True  # [win]
@@ -188,8 +189,12 @@ test:
     # Prevent regression mentioned in https://github.com/conda-forge/r-base-feedstock/issues/50
     - Rscript -e "stopifnot(capabilities('jpeg'), TRUE)"
     - Rscript -e "stopifnot(capabilities('png'), TRUE)"
+
   files:
     - test-svg.R
+    - test-isolation-setup.R
+    - test-isolation.R
+    - test-isolation-teardown.R
 
 about:
   home: http://www.r-project.org/
